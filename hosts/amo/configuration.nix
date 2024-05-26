@@ -75,14 +75,6 @@
     isNormalUser = true;
     description = "southcity";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      vim
-      neovim
-      neofetch
-      firefox
-      google-chrome
-      libnotify
-    ];
   };
 
   home-manager = {
@@ -94,6 +86,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    firefox
     pciutils
   ];
 

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,6 +19,18 @@
         "XDG_SESSION_TYPE,wayland"
         "WLR_NO_HARDWARE_CURSORS,1"
       ];
+      decoration = {
+        rounding = 6;
+        blur = {
+          enabled = true;
+          size = 5;
+          passes = 2;
+          vibrancy = 0.1696;
+          xray = true;
+        };
+        dim_inactive = true;
+        dim_strength = 0.2;
+      };
       input = {
         kb_layout = "no";
         kb_variant = "nodeadkeys";
