@@ -5,6 +5,7 @@
     ../../modules/home-manager/browsers/chrome.nix
     ../../modules/home-manager/browsers/firefox.nix
     ../../modules/home-manager/catppuccin.nix
+    ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/direnv.nix
     ../../modules/home-manager/discord.nix
     ../../modules/home-manager/fzf.nix

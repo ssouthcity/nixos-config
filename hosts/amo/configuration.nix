@@ -11,7 +11,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
@@ -63,8 +66,11 @@
     wireplumber.enable = true;
   };
 
+  programs.dconf.enable = true;
+
   programs.hyprland = {
     enable = true;
+    xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 

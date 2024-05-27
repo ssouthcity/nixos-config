@@ -2,12 +2,6 @@
 {
   gtk = {
     enable = true;
-    # catppuccin = {
-    #   enable = true;
-    #   cursor.enable = true;
-    #   icon.enable = true;
-    #   tweaks = [ "normal" "rimless" ];
-    # };
     theme = {
       name = "Gruvbox-Dark-B";
       package = pkgs.gruvbox-gtk-theme;
@@ -22,7 +16,11 @@
     };
   };
 
-  dconf.settings."org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark";
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    x11.defaultCursor = "Capitaine Cursors (Gruvbox)";
+    name = "Capitaine Cursors (Gruvbox)";
+    package = pkgs.capitaine-cursors-themed;
   };
 }
