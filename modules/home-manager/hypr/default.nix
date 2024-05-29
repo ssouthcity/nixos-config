@@ -4,6 +4,7 @@
     ./hyprland.nix
     ./notifications/mako.nix
     ./screenshare/xwaylandvideobridge.nix
+    ./screenshare/xdg-desktop-portal-hyprland.nix
     ./screenshot/grim.nix
     ./screenshot/hyprshot.nix
     ./screenshot/slurp.nix

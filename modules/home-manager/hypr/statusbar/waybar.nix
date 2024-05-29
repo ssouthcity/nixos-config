@@ -42,7 +42,11 @@
           on-click = "activate";
           active-only = false;
           all-outputs = true;
-          format = "{}";
+          format = "{icon}";
+          format-icons = {
+            active = "";
+            default = "";
+          };
           persistent-workspaces = {
             "*" = 4;
           };
@@ -113,6 +117,7 @@
       background: transparent;
     }
 
+    tooltip,
     .module {
       padding: 2px 12px;
       margin: 0px 8px;

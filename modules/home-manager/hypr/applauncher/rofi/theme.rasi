@@ -5,7 +5,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       600px;
+    width:                       800px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -70,11 +70,12 @@ dummy {
     background-color:            transparent;
 }
 
-mode-switcher{
+mode-switcher {
     enabled:                     true;
     spacing:                     10px;
     background-color:            transparent;
     text-color:                  @foreground;
+    border:                      0;
 }
 
 button {
@@ -107,12 +108,13 @@ listview {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
+    border:                      0;
 }
 
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     4px;
+    padding:                     4px 16px;
     border-radius:               100%;
     background-color:            transparent;
     text-color:                  @foreground;

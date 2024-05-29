@@ -12,7 +12,7 @@
     ];
 
     extraConfig = {
-      modes = "window,drun,power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
+      modes = "window,drun,filebrowser,power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
       show-icons = true;
       display-drun = "";
       display-filebrowser = "";

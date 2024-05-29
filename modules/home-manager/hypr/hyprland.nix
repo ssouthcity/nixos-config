@@ -109,13 +109,15 @@
 
       bind = [
         "SUPER, RETURN, exec, kitty"
-        "SUPER CTRL, RETURN, exec, rofi -show drun"
+        "SUPER, Space, exec, rofi -show drun"
         "SUPER, B, exec, firefox"
         "SUPER, E, exec, nautilus"
+        "SUPER SHIFT, E, exec, rofi -show filebrowser"
+        "SUPER SHIFT, W, exec, rofi -show window"
         "SUPER, Q, killactive"
-        "SUPER CTRL, Q, exec, rofi -show power-menu"
+        "SUPER SHIFT, Q, exec, rofi -modes power-menu -show power-menu"
         "SUPER, F, fullscreen, 1"
-        "SUPER, Space, togglefloating"
+        "SUPER, T, togglefloating"
         "SUPER, P, pseudo"
         "SUPER, V, togglesplit"
 
