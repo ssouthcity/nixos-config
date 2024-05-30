@@ -14,6 +14,7 @@
     ../../modules/home-manager/hypr
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/nvim.nix
+    ../../modules/home-manager/pavucontrol.nix
     ../../modules/home-manager/starship.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/xdg.nix

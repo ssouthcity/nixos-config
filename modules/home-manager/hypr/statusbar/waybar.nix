@@ -36,6 +36,7 @@
           format-icons = {
             default = ["" "" ""];
           };
+          on-click = "pavucontrol";
         };
 
         "hyprland/workspaces" = {
