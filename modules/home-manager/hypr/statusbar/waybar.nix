@@ -31,8 +31,8 @@
         pulseaudio = {
           tooltip = false;
           scroll-step = 1;
-          format = "{icon}    {volume}%";
-          format-muted = "{icon}    {volume}%";
+          format = "{icon} {volume}%";
+          format-muted = "{icon} {volume}%";
           format-icons = {
             default = ["" "" ""];
           };
@@ -55,7 +55,7 @@
 
         network = {
           tooltip = false;
-          format-wifi = "    {essid}";
+          format-wifi = " {essid}";
           format-ethernet = "";
         };
 
@@ -65,10 +65,10 @@
             warning = 30;
             critical = 20;
           };
-          format = "{icon}    {capacity}%";
-          format-charging = "    {capacity}%";
-          format-plugged = "    {capacity}%";
-          format-alt = "{icon}    {time}";
+          format = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{icon} {time}";
           format-icons = ["" "" "" "" ""];
         };
 
@@ -85,13 +85,13 @@
 
         cpu = {
           interval = 15;
-          format = "   {}%";
+          format = " {}%";
           max-length = 10;
         };
 
         memory = {
           interval = 30;
-          format = "   {}%";
+          format = " {}%";
           max-length = 10;
         };
 
@@ -112,6 +112,7 @@
 
     style = ''
     * {
+      font-family: MesloLGS Nerd Font Mono;
       font-size: 16px;
       border: none;
       border-radius: 0px;
@@ -120,8 +121,7 @@
 
     tooltip,
     .module {
-      padding: 2px 12px;
-      margin: 0px 8px;
+      padding: 0px 16px;
 
       color: @theme_fg_color;
       background: @theme_bg_color;
@@ -130,14 +130,6 @@
       border-width: 2px;
       border-color: @theme_fg_color;
       border-radius: 10px;
-    }
-
-    #custom-launcher {
-      padding-right: 18px;
-    }
-
-    #custom-power { 
-      padding-right: 16px;
     }
     '';
   };
