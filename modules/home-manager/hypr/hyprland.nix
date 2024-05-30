@@ -126,6 +126,11 @@
         "SUPER, 3, workspace, 3"
         "SUPER, 4, workspace, 4"
 
+        "SUPER SHIFT, 1, movetoworkspacesilent, 1"
+        "SUPER SHIFT, 2, movetoworkspacesilent, 2"
+        "SUPER SHIFT, 3, movetoworkspacesilent, 3"
+        "SUPER SHIFT, 4, movetoworkspacesilent, 4"
+
         "SUPER, h, movefocus, l"
         "SUPER, l, movefocus, r"
         "SUPER, j, movefocus, d"
