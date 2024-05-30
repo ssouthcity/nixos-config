@@ -116,7 +116,12 @@
       font-size: 16px;
       border: none;
       border-radius: 0px;
+      min-height: 0;
       background: transparent;
+    }
+
+    #waybar > box {
+      padding: 4px;
     }
 
     tooltip,
@@ -130,6 +135,8 @@
       border-width: 2px;
       border-color: @theme_fg_color;
       border-radius: 10px;
+
+      box-shadow: 0px 0px 4px 2px #1a1a1a;
     }
     '';
   };
