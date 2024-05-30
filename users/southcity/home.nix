@@ -5,6 +5,7 @@
     ../../modules/home-manager/browsers/chrome.nix
     ../../modules/home-manager/browsers/firefox.nix
     ../../modules/home-manager/catppuccin.nix
+    ../../modules/home-manager/dconf.nix
     ../../modules/home-manager/direnv.nix
     ../../modules/home-manager/discord.nix
     ../../modules/home-manager/fzf.nix
@@ -13,6 +14,7 @@
     ../../modules/home-manager/hypr
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/nvim.nix
+    ../../modules/home-manager/pavucontrol.nix
     ../../modules/home-manager/starship.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/xdg.nix

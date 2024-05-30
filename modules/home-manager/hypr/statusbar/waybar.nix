@@ -2,65 +2,143 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    catppuccin.enable = true;
 
     settings = {
       mainBar = {
         layer = "top";
-        position = "left";
-        margin = "20 0 20 4";
-        spacing = 8;
+        position = "top";
+        margin-bottom = 0;
+        margin-top = 8;
+        margin-left = 10;
+        margin-right = 10;
+
         modules-left = [
-          "hyprland/workspaces"
+          "custom/launcher"
+          "cpu"
+          "memory"
+          "tray"
         ];
         modules-center = [
+          "hyprland/workspaces"
         ];
         modules-right = [
           "pulseaudio"
-          "battery"
           "clock"
+          "battery"
+          "custom/power"
         ];
 
         pulseaudio = {
-          format = "{volume}%\n  {icon}";
+          tooltip = false;
+          scroll-step = 1;
+          format = "{icon}    {volume}%";
+          format-muted = "{icon}    {volume}%";
+          format-icons = {
+            default = ["" "" ""];
+          };
+          on-click = "pavucontrol";
+        };
+
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          active-only = false;
+          all-outputs = true;
+          format = "{icon}";
+          format-icons = {
+            active = "";
+            default = "";
+          };
+          persistent-workspaces = {
+            "*" = 4;
+          };
+        };
+
+        network = {
+          tooltip = false;
+          format-wifi = "    {essid}";
+          format-ethernet = "";
         };
 
         battery = {
-          format = "{capacity}%\n  {icon}";
+          states = {
+            good = 95;
+            warning = 30;
+            critical = 20;
+          };
+          format = "{icon}    {capacity}%";
+          format-charging = "    {capacity}%";
+          format-plugged = "    {capacity}%";
+          format-alt = "{icon}    {time}";
           format-icons = ["" "" "" "" ""];
         };
 
+        tray ={
+          icon-size = 18;
+          spacing = 10;
+        };
+
         clock = {
-          format = "{:%H\n%M}";
+          format = "{:%H:%M %a}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = "{:%Y-%m-%d}";
+        };
+
+        cpu = {
+          interval = 15;
+          format = "   {}%";
+          max-length = 10;
+        };
+
+        memory = {
+          interval = 30;
+          format = "   {}%";
+          max-length = 10;
+        };
+
+        "custom/power" = {
+          format = "";
+          on-click = "rofi -show power-menu";
+          tooltip = false;
+        };
+
+        "custom/launcher" = {
+          format = "";
+          on-click = "rofi -show drun";
+          on-click-right = "killall rofi";
+          tooltip = false;
         };
       };
     };
 
     style = ''
-      * {
-        all: initial;
-        font-family: MesloLGL Nerd Font Mono, sans-serif;
-      }
+    * {
+      font-size: 16px;
+      border: none;
+      border-radius: 0px;
+      background: transparent;
+    }
 
-      window#waybar {
-        background: transparent;
-      }
+    tooltip,
+    .module {
+      padding: 2px 12px;
+      margin: 0px 8px;
 
-      #workspaces button {
-        padding: 8px;
-        border-radius: 20%;
-        background: @base;
-        color: @flamingo;
-      }
+      color: @theme_fg_color;
+      background: @theme_bg_color;
 
-      #clock,
-      #pulseaudio,
-      #battery {
-        padding: 4px;
-        border-radius: 20%;
-        background: @base;
-        color: @flamingo;
-      }
+      border-style: solid;
+      border-width: 2px;
+      border-color: @theme_fg_color;
+      border-radius: 10px;
+    }
+
+    #custom-launcher {
+      padding-right: 18px;
+    }
+
+    #custom-power { 
+      padding-right: 16px;
+    }
     '';
   };
 }

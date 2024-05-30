@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    nixos-hardware.url = "github:ssouthcity/nixos-hardware/lenovo-legion-15ach6h";
+    nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
     home-manager = {
       url = "github:nix-community/home-manager";

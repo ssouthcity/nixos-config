@@ -2,7 +2,6 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-
     xwayland.enable = true;
 
     systemd = {
@@ -10,48 +9,122 @@
       variables = [ "--all" ];
     };
 
-    catppuccin.enable = true;
-
     settings = {
-      monitor = "eDP-1,1920x1080@60,0x0,1";
+      monitor = ", preferred, auto, 1";
+
       env = [
         "NIXOS_OZONE_WSL,1"
         "XDG_SESSION_TYPE,wayland"
         "WLR_NO_HARDWARE_CURSORS,1"
+        "XCURSOR_THEME,Capitaine Cursors (Gruvbox)"
+        "XCURSOR_SIZE,32"
       ];
-      decoration = {
-        rounding = 6;
-        blur = {
-          enabled = true;
-          size = 5;
-          passes = 2;
-          vibrancy = 0.1696;
-          xray = true;
-        };
-        dim_inactive = true;
-        dim_strength = 0.2;
-      };
+
       input = {
         kb_layout = "no";
         kb_variant = "nodeadkeys";
+
+        follow_mouse = 1;
 
         touchpad = {
           natural_scroll = true;
           scroll_factor = 0.2;
         };
       }; 
-      bind = [
-        "SUPER, B, exec, firefox"
-        "SUPER, Q, exec, kitty"
-        "SUPER, space, exec, rofi -show drun -normal-window"
-        "SUPER, F, fullscreen"
-        "SUPER, V, togglefloating"
-        "SUPER, D, killactive"
 
-        "SUPER, 1, movefocus, 1"
-        "SUPER, 2, movefocus, 2"
-        "SUPER, 3, movefocus, 3"
-        "SUPER, 4, movefocus, 4"
+      general = {
+        gaps_in = 10;
+        gaps_out = 20;
+
+        layout = "dwindle";
+
+        border_size = 3;
+        "col.active_border" = "rgba(ffdeb0ff)";
+        "col.inactive_border" = "rgba(ffdeb05c)";
+      };
+
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+
+        enable_swallow = true;
+        swallow_regex = "^(kitty)$";
+      };
+
+      decoration = {
+        rounding = 10;
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 3;
+          new_optimizations = true;
+        };
+
+        active_opacity = 1.0;
+        inactive_opacity = 0.9;
+        fullscreen_opacity = 1.0;
+
+        drop_shadow = true;
+        shadow_range = 30;
+        shadow_render_power = 3;
+        "col.shadow" = "rgba(1a1a1aee)";
+      };
+
+      animations = {
+        enabled = true;
+        bezier = [
+          "customBezier, 0.05, 0.9, 0.1, 1.0"
+        ];
+        animation = [
+          "windows, 1, 7, customBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
+      };
+
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+      };
+
+      master = {
+        new_is_master = true;
+      };
+      
+      windowrule = [
+        "float,^(rofi)$"
+      ];
+
+      windowrulev2 = [
+        "opacity 0.0 override,class:^(xwaylandvideobridge)$"
+        "noanim,class:^(xwaylandvideobridge)$"
+        "noinitialfocus,class:^(xwaylandvideobridge)$"
+        "maxsize 1 1,class:^(xwaylandvideobridge)$"
+        "noblur,class:^(xwaylandvideobridge)$"
+      ];
+
+      bind = [
+        "SUPER, RETURN, exec, kitty"
+        "SUPER, Space, exec, rofi -show drun"
+        "SUPER, B, exec, firefox"
+        "SUPER, E, exec, nautilus"
+        "SUPER SHIFT, E, exec, rofi -show filebrowser"
+        "SUPER SHIFT, W, exec, rofi -show window"
+        "SUPER, Q, killactive"
+        "SUPER SHIFT, Q, exec, rofi -show power-menu"
+        "SUPER, F, fullscreen, 1"
+        "SUPER, T, togglefloating"
+        "SUPER, P, pseudo"
+        "SUPER, V, togglesplit"
+
+        "SUPER, 1, workspace, 1"
+        "SUPER, 2, workspace, 2"
+        "SUPER, 3, workspace, 3"
+        "SUPER, 4, workspace, 4"
 
         "SUPER, h, movefocus, l"
         "SUPER, l, movefocus, r"
@@ -63,6 +136,12 @@
         "SUPER_SHIFT, j, movewindow, d"
         "SUPER_SHIFT, k, movewindow, u"
       ];
+
+      bindm = [
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
+      ];
+
     };
   };
 }
