@@ -9,8 +9,9 @@
         position = "top";
         margin-bottom = 0;
         margin-top = 8;
-        margin-left = 10;
-        margin-right = 10;
+        margin-left = 20;
+        margin-right = 20;
+        spacing = 8;
 
         modules-left = [
           "custom/launcher"
@@ -120,10 +121,6 @@
       background: transparent;
     }
 
-    #waybar > box {
-      padding: 4px;
-    }
-
     tooltip,
     .module {
       padding: 0px 16px;
@@ -135,8 +132,6 @@
       border-width: 2px;
       border-color: @theme_fg_color;
       border-radius: 10px;
-
-      box-shadow: 0px 0px 4px 2px #1a1a1a;
     }
     '';
   };
