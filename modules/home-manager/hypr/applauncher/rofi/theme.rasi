@@ -1,5 +1,23 @@
 @import "gruvbox-dark"
 
+configuration {
+  show-icons: true;
+  drun-display-format: "{name}";
+  drun {
+    display-name: "";
+  }
+  filebrowser {
+    display-name: "";
+  }
+  window {
+    display-name: "";
+    format: "{w} · {c} · {t}";
+  }
+  power-menu {
+    display-name: "⏻";
+  }
+}
+
 window {
     transparency:                "real";
     location:                    center;

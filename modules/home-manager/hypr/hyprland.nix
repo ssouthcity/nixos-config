@@ -115,7 +115,7 @@
         "SUPER SHIFT, E, exec, rofi -show filebrowser"
         "SUPER SHIFT, W, exec, rofi -show window"
         "SUPER, Q, killactive"
-        "SUPER SHIFT, Q, exec, rofi -modes power-menu -show power-menu"
+        "SUPER SHIFT, Q, exec, rofi -show power-menu"
         "SUPER, F, fullscreen, 1"
         "SUPER, T, togglefloating"
         "SUPER, P, pseudo"

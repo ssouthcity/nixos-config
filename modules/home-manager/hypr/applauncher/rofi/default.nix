@@ -13,13 +13,6 @@
 
     extraConfig = {
       modes = "window,drun,filebrowser,power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
-      show-icons = true;
-      display-drun = "";
-      display-filebrowser = "";
-      display-window = "";
-      display-power-menu = "⏻";
-      drun-display-format = "{name}";
-      window-format = "{w} · {c} · {t}";
     };
   };
 }
