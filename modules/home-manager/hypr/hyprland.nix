@@ -135,6 +135,12 @@
         "SUPER_SHIFT, l, movewindow, r"
         "SUPER_SHIFT, j, movewindow, d"
         "SUPER_SHIFT, k, movewindow, u"
+
+        "SUPER, s, exec, hyprshot -m region"
+        "SUPER_SHIFT, s, exec, hyprshot -m region --clipboard-only"
+
+        "SUPER, PRINT, exec, hyprshot -m output --current"
+        "SUPER_SHIFT, PRINT, exec, hyprshot -m output --clipboard-only -current"
       ];
 
       bindm = [
