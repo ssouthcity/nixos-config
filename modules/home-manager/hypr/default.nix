@@ -1,10 +1,12 @@
 {
   imports = [
     ./applauncher/rofi
+    ./hypridle.nix
     ./hyprland.nix
+    ./hyprlock.nix
     ./notifications/dunst.nix
-    ./screenshare/xwaylandvideobridge.nix
     ./screenshare/xdg-desktop-portal-hyprland.nix
+    ./screenshare/xwaylandvideobridge.nix
     ./screenshot/grim.nix
     ./screenshot/hyprshot.nix
     ./screenshot/slurp.nix

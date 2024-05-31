@@ -112,6 +112,7 @@
         "SUPER, Q, killactive"
         "SUPER SHIFT, Q, exec, rofi -show power-menu"
         "SUPER, F, fullscreen, 1"
+        "SUPER_SHIFT, F, fullscreen, 0"
         "SUPER, T, togglefloating"
         "SUPER, P, pseudo"
         "SUPER, V, togglesplit"
@@ -141,6 +142,8 @@
 
         "SUPER, PRINT, exec, hyprshot -m output --current"
         "SUPER_SHIFT, PRINT, exec, hyprshot -m output --clipboard-only -current"
+
+        "SUPER, l, exec, hyprlock"
       ];
 
       bindm = [
