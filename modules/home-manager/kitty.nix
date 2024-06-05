@@ -5,8 +5,8 @@
     shellIntegration = {
       enableZshIntegration = true;
     };
-    # font = {
-      # name = "MesloLGL Nerd Font Mono";
-    # };
+    settings = {
+      window_padding_width = 8;
+    };
   };
 }

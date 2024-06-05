@@ -29,17 +29,6 @@
     '';
 
     plugins = with pkgs; [
-      # theme
-      {
-        plugin = tmuxPlugins.catppuccin;
-        extraConfig = ''
-        set -g @catppuccin_flavour "mocha"
-        set -g @catppuccin_window_tabs_enabled on
-        set -g @catppuccin_date_time "%H:%M"
-        set -g @catppuccin_status_modules "session battery date_time"
-        '';
-      }
-      tmuxPlugins.battery
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -16,8 +16,8 @@
         "NIXOS_OZONE_WSL,1"
         "XDG_SESSION_TYPE,wayland"
         "WLR_NO_HARDWARE_CURSORS,1"
-        "XCURSOR_THEME,Capitaine Cursors (Gruvbox)"
-        "XCURSOR_SIZE,32"
+        "XCURSOR_THEME,${config.stylix.cursor.name}"
+        "XCURSOR_SIZE,${toString config.stylix.cursor.size}"
       ];
 
       input = {
@@ -29,6 +29,7 @@
         touchpad = {
           natural_scroll = true;
           scroll_factor = 0.2;
+          clickfinger_behavior = true;
         };
       }; 
 
@@ -38,9 +39,7 @@
 
         layout = "dwindle";
 
-        border_size = 3;
-        "col.active_border" = "rgba(ffdeb0ff)";
-        "col.inactive_border" = "rgba(ffdeb05c)";
+        border_size = 0;
       };
 
       misc = {
@@ -64,6 +63,10 @@
         active_opacity = 1.0;
         inactive_opacity = 0.9;
         fullscreen_opacity = 1.0;
+
+        drop_shadow = true;
+        shadow_range = 32;
+        shadow_render_power = 8;
       };
 
       animations = {
@@ -89,22 +92,10 @@
       master = {
         new_is_master = true;
       };
-      
-      windowrule = [
-        "float,^(rofi)$"
-      ];
-
-      windowrulev2 = [
-        "opacity 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-        "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        "noblur,class:^(xwaylandvideobridge)$"
-      ];
 
       bind = [
         "SUPER, RETURN, exec, kitty"
-        "SUPER, Space, exec, rofi -show drun"
+        "SUPER, Space, exec, wofi"
         "SUPER, B, exec, firefox"
         "SUPER, E, exec, nautilus"
         "SUPER SHIFT, E, exec, rofi -show filebrowser"
@@ -143,7 +134,7 @@
         "SUPER, PRINT, exec, hyprshot -m output --current"
         "SUPER_SHIFT, PRINT, exec, hyprshot -m output --clipboard-only -current"
 
-        "SUPER, l, exec, hyprlock"
+        "SUPER_SHIFT, l, exec, hyprlock"
       ];
 
       bindm = [
