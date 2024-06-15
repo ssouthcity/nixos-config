@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.hyprlock = {
     enable = true;
@@ -5,7 +6,7 @@
       general = {
       };
       background = {
-        path = "~/.config/hypr/wallpaper.png";
+        path = "${config.stylix.image}";
         blur_passes = 3;
         blur_size = 8;
       };
@@ -16,9 +17,10 @@
         rounding = 16;
         dots_center = true;
         fade_on_empty = false;
-        font_color = "rgb(fbf1c7)";
-        inner_color = "rgb(282828)";
-        outer_color = "rgb(fbf1c7)";
+        font_family = config.stylix.fonts.sansSerif.name;
+        font_color = "rgb(${config.lib.stylix.colors.base05})";
+        inner_color = "rgb(${config.lib.stylix.colors.base02})";
+        outer_color = "rgb(${config.lib.stylix.colors.base0A})";
         outline_thickness = 2;
         placeholder_text = "Password";
       };

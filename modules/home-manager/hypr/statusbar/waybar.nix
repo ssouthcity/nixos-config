@@ -1,4 +1,7 @@
+{ config, ... }:
 {
+  stylix.targets.waybar.enable = false;
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -11,53 +14,83 @@
         margin-top = 8;
         margin-left = 20;
         margin-right = 20;
-        spacing = 8;
+        spacing = 32;
 
         modules-left = [
           "custom/launcher"
-          "cpu"
-          "memory"
+          "hyprland/workspaces"
           "tray"
         ];
         modules-center = [
-          "hyprland/workspaces"
+          "clock"
         ];
         modules-right = [
+          "network"
+          "bluetooth"
           "pulseaudio"
-          "clock"
           "battery"
-          "custom/power"
         ];
 
-        pulseaudio = {
+        "custom/launcher" = {
+          format = "";
+          on-click = "rofi -show drun";
+          on-click-right = "killall rofi";
           tooltip = false;
-          scroll-step = 1;
-          format = "{icon} {volume}%";
-          format-muted = "{icon} {volume}%";
-          format-icons = {
-            default = ["" "" ""];
-          };
-          on-click = "pavucontrol";
         };
 
         "hyprland/workspaces" = {
-          on-click = "activate";
-          active-only = false;
-          all-outputs = true;
           format = "{icon}";
           format-icons = {
             active = "";
-            default = "";
+            default = "";
+            urgent = "";
           };
+          on-click = "activate";
           persistent-workspaces = {
             "*" = 4;
           };
         };
 
         network = {
-          tooltip = false;
-          format-wifi = " {essid}";
-          format-ethernet = "";
+          format-disconnected = " Disconnected";
+          format-ethernet = "󱘖 Wired";
+          format-linked = "󱘖 {ifname} (No IP)";
+          format-wifi = "󰤨 {essid}";
+          interval = 5;
+          max-length = 30;
+          tooltip-format = ''
+            󱘖 {ipaddr}
+             {bandwidthUpBytes}
+             {bandwidthDownBytes}'';
+        };
+
+        bluetooth = {
+          format = "";
+          format-connected = " {num_connections}";
+          format-disabled = "";
+          tooltip-format = " {device_alias}";
+          tooltip-format-connected = "{device_enumerate}";
+          tooltip-format-enumerate-connected = " {device_alias}";
+        };
+
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-icons = {
+            car = "";
+            default = ["" "" ""];
+            hands-free = "";
+            headphone = "";
+            headset = "";
+            phone = "";
+            portable = "";
+          };
+          format-muted = " {volume}%";
+          on-click = "pavucontrol -t 3";
+          on-click-right = "pamixer -t";
+          on-scroll-down = "pamixer -d 5";
+          on-scroll-up = "pamixer -i 5";
+          scroll-step = 5;
+          tooltip-format = "{icon} {desc} {volume}%";
         };
 
         battery = {
@@ -73,66 +106,30 @@
           format-icons = ["" "" "" "" ""];
         };
 
-        tray ={
-          icon-size = 18;
-          spacing = 10;
-        };
-
-        clock = {
-          format = "{:%H:%M %a}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
-        };
-
-        cpu = {
-          interval = 15;
-          format = " {}%";
-          max-length = 10;
-        };
-
-        memory = {
-          interval = 30;
-          format = " {}%";
-          max-length = 10;
-        };
-
-        "custom/power" = {
-          format = "";
-          on-click = "rofi -show power-menu";
-          tooltip = false;
-        };
-
-        "custom/launcher" = {
-          format = "";
-          on-click = "rofi -show drun";
-          on-click-right = "killall rofi";
-          tooltip = false;
-        };
+        tray = {
+          icon-size = 16;
+          spacing = 16;
+        }; 
       };
     };
 
     style = ''
-    * {
-      font-family: MesloLGS Nerd Font Mono;
-      font-size: 16px;
-      border: none;
-      border-radius: 0px;
-      min-height: 0;
-      background: transparent;
-    }
+      * {
+        font-family: ${config.stylix.fonts.monospace.name};  
+      }
 
-    tooltip,
-    .module {
-      padding: 0px 16px;
+      window#waybar {
+        border-radius: 500px;
+      }
 
-      color: @theme_fg_color;
-      background: @theme_bg_color;
+      window#waybar > box {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
 
-      border-style: solid;
-      border-width: 2px;
-      border-color: @theme_fg_color;
-      border-radius: 10px;
-    }
+      #custom-launcher {
+        font-size: 1.5em;
+      }
     '';
   };
 }

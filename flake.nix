@@ -11,11 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hyprpaper.url = "git+https://github.com/hyprwm/hyprpaper?submodules=1";
-
-    catppuccin.url = "github:catppuccin/nix";
+    stylix.url = "github:danth/stylix";
 
     dotfiles = {
       url = "github:ssouthcity/dotfiles";
@@ -33,10 +29,7 @@
       nixosConfigurations = {
         amo = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs;};
-	        modules = [ 
-            inputs.nixos-hardware.nixosModules.lenovo-legion-15ach6h
-            ./hosts/amo/configuration.nix 
-          ];
+	        modules = [ ./hosts/amo/configuration.nix ];
         };
       };
     };

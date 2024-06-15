@@ -15,7 +15,6 @@
 
     syntaxHighlighting = {
       enable = true;
-      catppuccin.enable = true;
     };
 
     history = {
