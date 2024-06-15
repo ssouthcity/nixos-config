@@ -1,7 +1,6 @@
 @import "gruvbox-dark"
 
 configuration {
-  show-icons: true;
   drun-display-format: "{name}";
   drun {
     display-name: "";
@@ -20,15 +19,11 @@ configuration {
 
 window {
     transparency:                "real";
-    location:                    center;
-    anchor:                      center;
     fullscreen:                  false;
     width:                       800px;
-    x-offset:                    0px;
-    y-offset:                    0px;
 
     enabled:                     true;
-    border-radius:               20px;
+    border:                      0;
     cursor:                      "default";
     background-color:            @background;
 }

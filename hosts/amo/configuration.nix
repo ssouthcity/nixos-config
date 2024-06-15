@@ -2,9 +2,10 @@
 
 {
   imports = [
+      ../../modules/nixos
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      inputs.catppuccin.nixosModules.catppuccin
+      inputs.nixos-hardware.nixosModules.lenovo-legion-15ach6h
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -66,15 +67,12 @@
     wireplumber.enable = true;
   };
 
-  programs.dconf.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  programs = {
+    dconf.enable = true;
+    hyprland.enable = true;
+    zsh.enable = true;
   };
 
-  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   users.users.southcity = {
@@ -95,21 +93,6 @@
     firefox
     pciutils
   ];
-
-  fonts = {
-    packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [ "Meslo" ];
-      })
-    ];
-
-    fontconfig = {
-      defaultFonts = {
-        sansSerif = [ "MesloLGL Nerd Font" ];
-        monospace = [ "MesloLGL Nerd Font Mono" ];
-      };
-    };
-  };
 
   system.stateVersion = "23.11";
 }

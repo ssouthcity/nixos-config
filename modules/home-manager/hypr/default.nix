@@ -1,17 +1,13 @@
 {
   imports = [
     ./applauncher/rofi
+    ./applauncher/wofi
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
+    ./hyprshot.nix
     ./notifications/dunst.nix
-    ./screenshare/xdg-desktop-portal-hyprland.nix
-    ./screenshare/xwaylandvideobridge.nix
-    ./screenshot/grim.nix
-    ./screenshot/hyprshot.nix
-    ./screenshot/slurp.nix
     ./statusbar/waybar.nix
-    ./wallpaper/hyprpaper.nix
-    ./wlogout.nix
   ];
 }
