@@ -1,6 +1,6 @@
 {
   imports = [
-    ./games
+    ./games/retroarch
     ./stylix
   ];
 }

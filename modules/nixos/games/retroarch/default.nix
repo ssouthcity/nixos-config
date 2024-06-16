@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  services.xserver.desktopManager.retroarch.enable = true;
+
+  environment.systemPackages = with pkgs; [
     (retroarch.override {
       cores = with libretro; [
-        cen64
+        mupen64plus
+        fceumm
       ];
     })
   ];
