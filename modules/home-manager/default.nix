@@ -3,6 +3,7 @@
     ./audio/pulseaudio.nix
     ./browsers/chrome.nix 
     ./browsers/firefox.nix 
+    ./gaming/retroarch
     ./hypr
     ./music/spotify
 
