@@ -6,6 +6,8 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,8 +31,13 @@
       nixosConfigurations = {
         amo = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs;};
-	        modules = [ ./hosts/amo/configuration.nix ];
+	  modules = [ ./hosts/amo/configuration.nix ];
         };
+	neptr-wsl = nixpkgs.lib.nixosSystem {
+	  system = system;
+          specialArgs = {inherit inputs outputs;};
+	  modules = [ ./hosts/neptr-wsl/configuration.nix ];
+	};
       };
     };
 }

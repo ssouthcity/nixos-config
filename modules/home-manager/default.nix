@@ -6,6 +6,7 @@
     ./gaming/retroarch
     ./hypr
     ./music/spotify
+    ./programming
 
     ./direnv.nix
     ./discord.nix
