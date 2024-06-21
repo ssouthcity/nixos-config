@@ -12,6 +12,7 @@
     ./discord.nix
     ./fzf.nix
     ./git.nix
+    ./jq.nix
     ./kitty.nix
     ./nvim.nix
     ./starship.nix
