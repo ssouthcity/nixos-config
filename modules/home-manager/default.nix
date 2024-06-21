@@ -3,6 +3,7 @@
     ./audio/pulseaudio.nix
     ./browsers/chrome.nix 
     ./browsers/firefox.nix 
+    ./editor/nixvim
     ./gaming/retroarch
     ./hypr
     ./music/spotify
@@ -14,7 +15,6 @@
     ./git.nix
     ./jq.nix
     ./kitty.nix
-    ./nvim.nix
     ./starship.nix
     ./tmux.nix
     ./xdg.nix
