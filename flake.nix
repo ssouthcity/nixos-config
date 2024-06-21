@@ -37,7 +37,7 @@
       nixosConfigurations = {
         amo = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs;};
-	        modules = [ ./hosts/amo/configuration.nix ];
+          modules = [ ./hosts/amo/configuration.nix ];
         };
         neptr-wsl = nixpkgs.lib.nixosSystem {
           system = system;
