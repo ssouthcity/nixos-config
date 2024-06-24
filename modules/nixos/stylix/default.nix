@@ -1,10 +1,12 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     inputs.stylix.nixosModules.stylix 
   ];
 
   config = {
+    stylix.enable = true;
+
     stylix.image = ./wallpaper2.png;
 
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
@@ -40,6 +42,13 @@
 
       sizes = {
         desktop = 12;
+      };
+    };
+
+    stylix.targets.nixvim = {
+      transparent_bg = {
+      	main = true;
+        sign_column = true;
       };
     };
   };
