@@ -3,33 +3,18 @@
 {
   imports = [
     inputs.nixvim.homeManagerModules.default    
+
+    ./autocmds.nix
+    ./highlight.nix
+    ./keymaps.nix
+    ./opts.nix
+    ./plugins
   ];
 
   programs.nixvim = {
     enable = true;
 
-    keymaps = [
-      {
-        action = "<cmd>Oil<cr>";
-        key = "-";
-        mode = "n";
-        options = {
-          desc = "Open parent directory";
-          silent = true;
-        };
-      }
-    ];
-
-    plugins = {
-      lsp = {
-        enable = true;
-        servers = {
-          nixd.enable = true;
-        };
-      };
-      oil = {
-        enable = true;
-      };
-    };
+    viAlias = true;
+    vimAlias = true;
   };
 }

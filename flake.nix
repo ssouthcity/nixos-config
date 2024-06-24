@@ -17,8 +17,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      # temporarily removed bc of https://github.com/nix-community/nixvim/issues/1699
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dotfiles = {
@@ -41,7 +40,7 @@
         };
         neptr-wsl = nixpkgs.lib.nixosSystem {
           system = system;
-          specialArgs = {inherit inputs outputs;};
+          specialArgs = {inherit inputs outputs pkgs;};
           modules = [ ./hosts/neptr-wsl/configuration.nix ];
         };
       };
