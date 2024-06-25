@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+with config.lib.stylix.colors.withHashtag;
 {
   programs.tmux = {
     enable = true;
@@ -12,6 +13,9 @@
       # Status Bar
       set -g renumber-windows on
       set -g status-position top
+
+      set -g status-left-length 80
+      set -g status-left '#[fg=${base01},bg=${base0D}] #S #[fg=${base0D},bg=default] '
 
       # System Integration
       set -g set-clipboard on

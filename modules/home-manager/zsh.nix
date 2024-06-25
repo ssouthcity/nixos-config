@@ -1,9 +1,4 @@
 {
-  home.sessionVariables = {
-    VI_MODE_SET_CURSOR = "true";
-    ZSH_TMUX_AUTOSTART_ONCE = "true";
-  };
-
   programs.zsh = {
     enable = true;
 
@@ -23,27 +18,40 @@
       path = "$HOME/.cache/zsh_history";
     };
 
+    autocd = true;
+
     defaultKeymap = "viins";
 
-    oh-my-zsh = {
+    prezto = {
       enable = true;
-      plugins = [
-        "azure"
-        "cabal"
-        "catimg"
-        "direnv"
-        "docker"
-        "fzf"
-        "git"
-        "golang"
-        "kubectl"
-        "nvm"
-        "pyenv"
-        "rust"
-        "starship"
-        "terraform"
+
+      editor = {
+        dotExpansion = true;
+        keymap = "vi";
+      };
+
+      tmux = {
+        autoStartLocal = true;
+        autoStartRemote = true;
+        defaultSessionName = "default";
+      };
+
+      utility = {
+        safeOps = true;
+      };
+
+      pmodules = [
+        "autosuggestions"
+        "completion"
+        "directory"
+        "editor"
+        "environment"
+        "history"
+        "spectrum"
+        "syntax-highlighting"
+        "terminal"
         "tmux"
-        "web-search"
+        "utility"
       ];
     };
   };
