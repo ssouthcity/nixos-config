@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -22,7 +22,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      southcity = import ../../users/southcity/home.nix;
+      southcity = import ../../users/southcity-clionly/home.nix;
     };
   };
 

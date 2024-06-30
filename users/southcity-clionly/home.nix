@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-
 {
   imports = [
-    ../../modules/home-manager
+    ../../modules/home-manager/cli
   ];
 
   config = {
@@ -20,11 +18,5 @@
     nixpkgs.config.allowUnfree = true;
 
     programs.home-manager.enable = true;
-
-    # Not handled by stylix
-    gtk.iconTheme = {
-      name = "Gruvbox-Plus-Dark";
-      package = pkgs.gruvbox-plus-icons;
-    };
   };
 }
