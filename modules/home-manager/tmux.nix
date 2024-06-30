@@ -1,5 +1,17 @@
 { config, pkgs, ... }:
 with config.lib.stylix.colors.withHashtag;
+let
+  fullColorPill = bgColor: fgColor: content: 
+    "#[fg=${bgColor},bg=default]" +
+    "#[fg=${fgColor},bg=${bgColor}]${content}" +
+    "#[fg=${bgColor},bg=default]";
+
+  halfColorPill = leftBgColor: leftFgColor: leftContent: rightBgColor: rightFgColor: rightContent:
+    "#[fg=${leftBgColor},bg=default]" +
+    "#[fg=${leftFgColor},bg=${leftBgColor}]${leftContent}" +
+    "#[fg=${rightFgColor},bg=${rightBgColor}]${rightContent}" +
+    "#[fg=${rightBgColor},bg=default]";
+in 
 {
   stylix.targets.tmux.enable = false;
 
@@ -19,10 +31,10 @@ with config.lib.stylix.colors.withHashtag;
       set -g status-style bg=default,fg=default
 
       set -g status-left-length 80
-      set -g status-left '#[fg=${base01},bg=${base0D}] #S #[fg=${base0D},bg=default] '
-      set -g window-status-current-format '#[fg=${base09},bg=default]#[fg=${base01},bg=${base09}]#I #[fg=default,bg=${base02}] #W #[fg=${base02},bg=default]'
-      set -g window-status-format '#[fg=${base0A},bg=default]#[fg=${base01},bg=${base0A}]#I #[fg=default,bg=${base02}] #W #[fg=${base02},bg=default]'
-      set -g status-right '#[fg=${base0D},bg=default]#[fg=${base01},bg=${base0D}] #(date "+%Y-%m-%d %H:%M") '
+      set -g status-left '${fullColorPill base0D base00 "#S"} '
+      set -g window-status-current-format '${halfColorPill base0A base00 "#I " base02 "default" " #W"}'
+      set -g window-status-format '${halfColorPill base04 base00 "#I " base01 "default" " #W"}'
+      set -g status-right '${fullColorPill base0D base01 "#(date \"+%Y-%m-%d %H:%M\")"}'
 
       # System Integration
       set -g set-clipboard on
