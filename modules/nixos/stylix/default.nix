@@ -44,12 +44,5 @@
         desktop = 12;
       };
     };
-
-    stylix.targets.nixvim = {
-      transparent_bg = {
-      	main = true;
-        sign_column = true;
-      };
-    };
   };
 }

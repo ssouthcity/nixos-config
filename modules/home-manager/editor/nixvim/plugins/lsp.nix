@@ -15,13 +15,14 @@
     };
     servers = {
       gopls.enable = true;
+      hls.enable = true;
       nixd.enable = true;
-      templ.enable = true;
       rust-analyzer = {
         enable = true;
         installCargo = false;
         installRustc = false;
       };
+      templ.enable = true;
     };
   };
 }

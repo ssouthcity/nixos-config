@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 with config.lib.stylix.colors.withHashtag;
 {
+  stylix.targets.tmux.enable = false;
+
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -14,8 +16,13 @@ with config.lib.stylix.colors.withHashtag;
       set -g renumber-windows on
       set -g status-position top
 
+      set -g status-style bg=default,fg=default
+
       set -g status-left-length 80
       set -g status-left '#[fg=${base01},bg=${base0D}] #S #[fg=${base0D},bg=default] '
+      set -g window-status-current-format '#[fg=${base09},bg=default]#[fg=${base01},bg=${base09}]#I #[fg=default,bg=${base02}] #W #[fg=${base02},bg=default]'
+      set -g window-status-format '#[fg=${base0A},bg=default]#[fg=${base01},bg=${base0A}]#I #[fg=default,bg=${base02}] #W #[fg=${base02},bg=default]'
+      set -g status-right '#[fg=${base0D},bg=default]#[fg=${base01},bg=${base0D}] #(date "+%Y-%m-%d %H:%M") '
 
       # System Integration
       set -g set-clipboard on
