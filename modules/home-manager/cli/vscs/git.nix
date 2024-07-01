@@ -7,5 +7,10 @@
       amend = "commit --amend --no-edit";
       force = "push --force-if-includes --force-with-lease";
     };
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 }
