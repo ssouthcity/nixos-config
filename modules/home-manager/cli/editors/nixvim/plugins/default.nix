@@ -5,7 +5,6 @@
     ./gitsigns.nix
     ./lsp.nix
     ./lualine.nix
-    ./neocord.nix
     ./oil.nix
     ./surround.nix
     ./telescope.nix
