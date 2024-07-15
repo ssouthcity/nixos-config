@@ -17,6 +17,14 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    modules.git = {
+      enable = true;
+      userName = "Stian Sørby";
+      userEmail = "stian.sorby@norges-bank.no";
+      useHttpPath = true;
+      wslCredentialHelper.enable = true;
+    };
+
     programs.home-manager.enable = true;
   };
 }

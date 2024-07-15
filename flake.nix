@@ -43,6 +43,11 @@
           specialArgs = {inherit inputs outputs pkgs;};
           modules = [ ./hosts/neptr-wsl/configuration.nix ];
         };
+        nb-wsl = nixpkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = {inherit inputs outputs pkgs;};
+          modules = [ ./hosts/nb-wsl/configuration.nix ];
+        };
       };
     };
 }
