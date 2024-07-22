@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ../../modules/home-manager/cli
@@ -24,6 +25,8 @@
       useHttpPath = true;
       wslCredentialHelper.enable = true;
     };
+
+    home.packages = with pkgs; [ azure-cli terraform ];
 
     programs.home-manager.enable = true;
   };

@@ -8,7 +8,9 @@
     ./terminals/kitty.nix
     ./vscs/git.nix
     ./direnv.nix
+    ./eza.nix
     ./fzf.nix
     ./jq.nix
+    ./zoxide.nix
   ];
 }
