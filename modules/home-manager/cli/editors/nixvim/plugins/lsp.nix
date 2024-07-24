@@ -23,6 +23,7 @@
         installRustc = false;
       };
       templ.enable = true;
+      terraformls.enable = true;
     };
   };
 }

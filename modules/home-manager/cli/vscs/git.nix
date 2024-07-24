@@ -30,6 +30,8 @@ in
       aliases = {
         amend = "commit --amend --no-edit";
         force = "push --force-if-includes --force-with-lease";
+        noop = "commit --allow-empty -m 'noop'";
+        nvm = "!git reset --hard HEAD && git clean -d -f";
       };
       extraConfig = {
         init = {
