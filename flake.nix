@@ -29,7 +29,10 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       outputs = self.outputs;
     in
     {
@@ -37,6 +40,11 @@
         amo = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs;};
           modules = [ ./hosts/amo/configuration.nix ];
+        };
+        neptr = nixpkgs.lib.nixosSystem {
+	  system = system;
+          specialArgs = {inherit inputs outputs pkgs;};
+          modules = [ ./hosts/neptr/configuration.nix ];
         };
         neptr-wsl = nixpkgs.lib.nixosSystem {
           system = system;
@@ -51,3 +59,4 @@
       };
     };
 }
+

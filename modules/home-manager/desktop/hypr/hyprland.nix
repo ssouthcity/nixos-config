@@ -21,8 +21,8 @@
       ];
 
       input = {
-        kb_layout = "no";
-        kb_variant = "nodeadkeys";
+        kb_layout = "us";
+        kb_variant = "intl";
 
         follow_mouse = 1;
 

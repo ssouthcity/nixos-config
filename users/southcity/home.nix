@@ -26,5 +26,11 @@
       name = "Gruvbox-Plus-Dark";
       package = pkgs.gruvbox-plus-icons;
     };
+
+    modules.git = {
+      enable = true;
+      userName = "Stian Sørby";
+      userEmail = "51554341+ssouthcity@users.noreply.github.com";
+    };
   };
 }
