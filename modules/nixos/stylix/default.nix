@@ -7,7 +7,7 @@
   config = {
     stylix.enable = true;
 
-    stylix.image = ./wallpaper2.png;
+    stylix.image = ./wallpapers/sunflowers-painting.png;
 
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
 

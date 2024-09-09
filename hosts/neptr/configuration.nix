@@ -3,7 +3,10 @@
 {
   imports =
     [ 
-      ../../modules/nixos
+      ../../bundles/nixos/common
+      ../../bundles/nixos/peripherals
+      ../../modules/nixos/steam
+      ../../modules/nixos/nvidia
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -16,9 +19,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Enable experimental flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
@@ -52,26 +52,6 @@
     pulse.enable = true;
   };
 
-  # Video
-  hardware.graphics = {
-    enable = true;
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  
-  # Peripherals
-  hardware.logitech = {
-    wireless.enable = true;
-    wireless.enableGraphical = true;
-  };
-
   # Users
   users.defaultUserShell = pkgs.zsh;
 
@@ -94,16 +74,6 @@
     firefox.enable = true;
     hyprland.enable = true;
     zsh.enable = true;
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
   };
   
   system.stateVersion = "24.05";
