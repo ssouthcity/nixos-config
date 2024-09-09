@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -42,14 +42,9 @@
           modules = [ ./hosts/amo/configuration.nix ];
         };
         neptr = nixpkgs.lib.nixosSystem {
-	  system = system;
-          specialArgs = {inherit inputs outputs pkgs;};
-          modules = [ ./hosts/neptr/configuration.nix ];
-        };
-        neptr-wsl = nixpkgs.lib.nixosSystem {
           system = system;
           specialArgs = {inherit inputs outputs pkgs;};
-          modules = [ ./hosts/neptr-wsl/configuration.nix ];
+          modules = [ ./hosts/neptr/configuration.nix ];
         };
         nb-wsl = nixpkgs.lib.nixosSystem {
           system = system;
@@ -57,6 +52,16 @@
           modules = [ ./hosts/nb-wsl/configuration.nix ];
         };
       };
+
+      homeConfigurations = {
+        southcity = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ 
+            inputs.nixvim.homeManagerModules.default
+            inputs.stylix.homeManagerModules.stylix 
+            ./users/southcity
+          ];
+        };
+      };
     };
 }
-

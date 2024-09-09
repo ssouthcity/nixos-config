@@ -5,7 +5,6 @@
     ../../bundles/home-manager/academia
     ../../bundles/home-manager/cli
     ../../bundles/home-manager/entertainment
-    ../../bundles/home-manager/hyprland
   ];
 
   config = {
@@ -13,16 +12,6 @@
     home.homeDirectory = "/home/southcity";
 
     home.stateVersion = "23.11";
-
-    home.sessionVariables = {
-      EDITOR = "nvim";
-      BROWSER = "firefox";
-      TERMINAL = "kitty";
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
-    programs.home-manager.enable = true;
 
     # Not handled by stylix
     gtk.iconTheme = {

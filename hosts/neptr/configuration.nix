@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -8,7 +8,6 @@
       ../../modules/nixos/steam
       ../../modules/nixos/nvidia
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -59,14 +58,6 @@
     isNormalUser = true;
     description = "southcity";
     extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  home-manager = {
-    backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      southcity = import ../../users/southcity/home.nix;
-    };
   };
 
   programs = {

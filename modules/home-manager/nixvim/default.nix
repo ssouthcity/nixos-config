@@ -1,9 +1,5 @@
-{ inputs, ... }:
-
 {
   imports = [
-    inputs.nixvim.homeManagerModules.default    
-
     ./autocmds.nix
     ./highlight.nix
     ./keymaps.nix

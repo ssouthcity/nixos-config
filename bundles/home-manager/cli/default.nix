@@ -3,6 +3,7 @@
     ../../../modules/home-manager/nixvim
     ../../../modules/home-manager/tmux
     ../../../modules/home-manager/starship
+    ../../../modules/home-manager/stylix
     ../../../modules/home-manager/zsh
     ../../../modules/home-manager/kitty
     ../../../modules/home-manager/git

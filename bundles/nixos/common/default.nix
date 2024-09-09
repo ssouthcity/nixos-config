@@ -2,6 +2,6 @@
   imports = [
     ../../../modules/nixos/docker
     ../../../modules/nixos/flakes
-    ../../../modules/nixos/stylix
+    ../../../modules/nixos/home-manager
   ];
 }
