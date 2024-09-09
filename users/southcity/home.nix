@@ -2,7 +2,10 @@
 
 {
   imports = [
-    ../../modules/home-manager
+    ../../bundles/home-manager/academia
+    ../../bundles/home-manager/cli
+    ../../bundles/home-manager/entertainment
+    ../../bundles/home-manager/hyprland
   ];
 
   config = {

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../modules/home-manager/cli
+    ../../bundles/home-manager/cli
   ];
 
   config = {
