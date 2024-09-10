@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   imports = [
     ../../bundles/home-manager/cli
@@ -10,14 +11,6 @@
 
     home.stateVersion = "23.11";
 
-    home.sessionVariables = {
-      EDITOR = "nvim";
-      BROWSER = "firefox";
-      TERMINAL = "kitty";
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
     modules.git = {
       enable = true;
       userName = "Stian Sørby";
@@ -27,7 +20,5 @@
     };
 
     home.packages = with pkgs; [ azure-cli terraform ];
-
-    programs.home-manager.enable = true;
   };
 }

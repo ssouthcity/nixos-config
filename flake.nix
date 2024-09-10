@@ -54,12 +54,28 @@
       };
 
       homeConfigurations = {
-        southcity = home-manager.lib.homeManagerConfiguration {
+        "southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ 
             inputs.nixvim.homeManagerModules.default
             inputs.stylix.homeManagerModules.stylix 
-            ./users/southcity
+            ./users/personal
+          ];
+        };
+        "southcity@amo" = home-manager.lib.homemanagerconfiguration {
+          inherit pkgs;
+          modules = [ 
+            inputs.nixvim.homemanagermodules.default
+            inputs.stylix.homemanagermodules.stylix 
+            ./users/dev
+          ];
+        };
+        "southcity@nb-wsl" = home-manager.lib.homemanagerconfiguration {
+          inherit pkgs;
+          modules = [ 
+            inputs.nixvim.homemanagermodules.default
+            inputs.stylix.homemanagermodules.stylix 
+            ./users/work
           ];
         };
       };
