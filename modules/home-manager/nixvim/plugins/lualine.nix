@@ -1,31 +1,30 @@
-{ pkgs, ... }:
-
 {
   programs.nixvim.plugins.lualine = {
     enable = true;
-    globalstatus = true;
 
-    componentSeparators = {
-      left = "";
-      right = "";
-    };
+    settings = {
+      sections = {
+        lualine_a = [ "mode" ];
+        lualine_b = [ "branch" ];
+        lualine_c = [ "filename" ];
+        lualine_x = [ "" ];
+        lualine_y = [ "filetype" ];
+        lualine_z = [ "progress" ];
+      };
 
-    sectionSeparators = {
-      left = "";
-      right = "";
-    };
+      options = {
+        globalstatus = true;
 
-    sections = {
-      lualine_a = [ "mode" ];
-      lualine_b = [ "branch" ];
-      lualine_c = [ "filename" ];
-      lualine_x = [ "" ];
-      lualine_y = [ "filetype" ];
-      lualine_z = [ "progress" ];
+        component_separators = {
+          left = "";
+          right = "";
+        };
+
+        section_separators = {
+          left = "";
+          right = "";
+        };
+      };
     };
   };
-
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [ 
-    nvim-web-devicons
-  ];
 }

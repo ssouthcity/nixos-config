@@ -7,10 +7,11 @@
     ./lualine.nix
     ./markdown-preview.nix
     ./oil.nix
-    ./surround.nix
     ./telescope.nix
     ./tmux-navigator.nix
     ./treesitter.nix
     ./trouble.nix
+    ./vim-surround.nix
+    ./web-devicons.nix
   ];
 }

@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   programs.nixvim.keymaps = [
     {
@@ -28,8 +26,4 @@
       };
     };
   };
-
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [ 
-    nvim-web-devicons
-  ];
 }
