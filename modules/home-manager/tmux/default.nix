@@ -17,6 +17,7 @@ in
 
   programs.tmux = {
     enable = true;
+    shortcut = "a";
     clock24 = true;
     terminal = "tmux-256color";
     baseIndex = 1;
