@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -44,6 +47,7 @@
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -60,10 +64,14 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   programs = {
     dconf.enable = true;
     firefox.enable = true;
-    hyprland.enable = true;
     zsh.enable = true;
   };
   

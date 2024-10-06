@@ -4,6 +4,7 @@
   imports = [
     ../../bundles/home-manager/cli
     ../../bundles/home-manager/entertainment
+    ../../bundles/home-manager/hyprland
   ];
 
   config = {
