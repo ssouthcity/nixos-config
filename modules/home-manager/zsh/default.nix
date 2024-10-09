@@ -23,7 +23,7 @@
     defaultKeymap = "viins";
 
     prezto = {
-      enable = false;
+      enable = true;
 
       editor = {
         keymap = "vi";
