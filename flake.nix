@@ -19,11 +19,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    dotfiles = {
-      url = "github:ssouthcity/dotfiles";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
