@@ -135,22 +135,6 @@
         "type": "github"
       }
     },
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1716046595,
-        "narHash": "sha256-w1rmmwdrGISZklxK/Cri6lKgjPa4Je1nLrUjQN3vGkk=",
-        "owner": "ssouthcity",
-        "repo": "dotfiles",
-        "rev": "56c3e73334783acf3c94cc12110fd4f8c4e668e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ssouthcity",
-        "repo": "dotfiles",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -580,7 +564,6 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
