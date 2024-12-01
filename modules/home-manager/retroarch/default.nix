@@ -2,11 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    (retroarch.override {
-      cores = with libretro; [
-        fceumm
-        parallel-n64
-      ];
-    })
+    (retroarch.withCores (cores: with cores; [
+      fceumm
+      parallel-n64
+    ]))
   ];
 }

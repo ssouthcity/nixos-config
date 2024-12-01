@@ -15,9 +15,12 @@
     };
     servers = {
       gopls.enable = true;
-      hls.enable = true;
+      hls = {
+        enable = true;
+        installGhc = false;
+      };
       nixd.enable = true;
-      rust-analyzer = {
+      rust_analyzer = {
         enable = true;
         installCargo = false;
         installRustc = false;
