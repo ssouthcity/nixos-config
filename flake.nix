@@ -37,9 +37,15 @@
           modules = [ ./hosts/amo/configuration.nix ];
         };
         neptr = nixpkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = {inherit inputs outputs pkgs;};
-          modules = [ ./hosts/neptr/configuration.nix ];
+          system = "x86_64-linux";
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          modules = [
+            ./hosts/neptr/configuration.nix
+            ./hosts/neptr/hardware-configuration.nix
+          ];
         };
         nb-wsl = nixpkgs.lib.nixosSystem {
           system = system;
