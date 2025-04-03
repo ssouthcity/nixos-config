@@ -5,6 +5,4 @@
 
     package = pkgs.firefox-wayland;
   };
-
-  config.stylix.targets.firefox.profileNames = [];
 }
