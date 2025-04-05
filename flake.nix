@@ -32,10 +32,6 @@
     in
     {
       nixosConfigurations = {
-        amo = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs;};
-          modules = [ ./hosts/amo/configuration.nix ];
-        };
         neptr = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = import nixpkgs {
@@ -61,14 +57,6 @@
             inputs.nixvim.homeManagerModules.default
             inputs.stylix.homeManagerModules.stylix 
             ./users/personal
-          ];
-        };
-        "southcity@amo" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ 
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
-            ./users/dev
           ];
         };
         "southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
