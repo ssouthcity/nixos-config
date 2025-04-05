@@ -8,47 +8,10 @@
     systemd-boot.enable = true;
   };
 
-  # Garbage Collect NixOS Generations
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-
-  # Optimize the Nix Store by Hardlinking Packages
-  nix.optimise = {
-    automatic = true;
-    dates = ["weekly"];
-  };
-
-  # Enable Canary Nix features
-  nix.settings.experimental-features = [
-    "flakes"
-    "nix-command"
-  ];
-
   # Network
   networking = {
     hostName = "neptr";
     networkmanager.enable = true;
-  };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Oslo";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "nb_NO.UTF-8";
-    LC_IDENTIFICATION = "nb_NO.UTF-8";
-    LC_MEASUREMENT = "nb_NO.UTF-8";
-    LC_MONETARY = "nb_NO.UTF-8";
-    LC_NAME = "nb_NO.UTF-8";
-    LC_NUMERIC = "nb_NO.UTF-8";
-    LC_PAPER = "nb_NO.UTF-8";
-    LC_TELEPHONE = "nb_NO.UTF-8";
-    LC_TIME = "nb_NO.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -90,7 +53,10 @@
   users.users.southcity = {
     isNormalUser = true;
     description = "Stian Sørby";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Install firefox.

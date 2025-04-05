@@ -8,65 +8,71 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      outputs = self.outputs;
-    in
+  outputs =
     {
-      nixosConfigurations = {
-        neptr = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
+      self,
+      nixpkgs,
+      home-manager,
+      flake-utils,
+      ...
+    }@inputs:
+    flake-utils.lib.eachDefaultSystemPassThrough (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      in
+      {
+        formatter.${system} = pkgs.nixfmt-rfc-style;
+
+        nixosModules.default = import ./nixosModules/default.nix { inherit inputs; };
+        nixosModules.peripherals = import ./nixosModules/peripherals.nix { inherit inputs; };
+
+        nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
           modules = [
-            ./hosts/neptr/configuration.nix
-            ./hosts/neptr/hardware-configuration.nix
+            self.nixosModules.default
+            self.nixosModules.peripherals
+            ./hosts/neptr
           ];
         };
-        nb-wsl = nixpkgs.lib.nixosSystem {
+        
+        nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
           system = system;
-          specialArgs = {inherit inputs outputs pkgs;};
+          specialArgs = { inherit inputs pkgs; };
           modules = [ ./hosts/nb-wsl/configuration.nix ];
         };
-      };
 
-      homeConfigurations = {
-        "southcity@neptr" = home-manager.lib.homeManagerConfiguration {
+        homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ 
+          modules = [
             inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
+            inputs.stylix.homeManagerModules.stylix
             ./users/personal
           ];
         };
-        "southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
+        
+        homeConfigurations."southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ 
+          modules = [
             inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
+            inputs.stylix.homeManagerModules.stylix
             ./users/work
           ];
         };
-      };
-    };
+      }
+    );
 }

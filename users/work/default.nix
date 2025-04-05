@@ -19,6 +19,9 @@
       wslCredentialHelper.enable = true;
     };
 
-    home.packages = with pkgs; [ azure-cli terraform ];
+    home.packages = with pkgs; [
+      azure-cli
+      terraform
+    ];
   };
 }
