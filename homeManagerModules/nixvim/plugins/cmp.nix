@@ -11,11 +11,11 @@
     enable = true;
 
     settings = {
-      sources = [ 
+      sources = [
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
         { name = "path"; }
-        { name = "buffer"; }        
+        { name = "buffer"; }
       ];
       mapping = {
         "<C-Space>" = "cmp.mapping.complete()";

@@ -10,12 +10,12 @@
       };
     }
   ];
-  
+
   programs.nixvim.plugins.oil = {
     enable = true;
 
     settings = {
-      columns = ["icon"];
+      columns = [ "icon" ];
       keymaps = {
         "<C-h>" = false;
         "<C-l>" = false;

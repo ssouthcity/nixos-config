@@ -18,8 +18,8 @@
     enable = true;
   };
 
-  programs.git = { 
-    enable = true; 
+  programs.git = {
+    enable = true;
     aliases = {
       amend = "commit --amend --no-edit";
       force = "push --force-if-includes --force-with-lease";

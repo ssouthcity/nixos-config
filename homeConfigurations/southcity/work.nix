@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, outputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}:
 let
   pinnedPackageVersionsOverlay = final: prev: {
     terraform = pkgs.mkTerraform {
@@ -7,7 +13,7 @@ let
       vendorHash = "sha256-xF9m67GE3MgeKqy7DGAf8RO1/MCZ5Uis1XNrajogQcI=";
     };
   };
-in 
+in
 {
   imports = [
     inputs.nixvim.homeManagerModules.default
@@ -25,9 +31,11 @@ in
 
     home.stateVersion = "23.11";
 
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "terraform"
-    ];
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "terraform"
+      ];
 
     nixpkgs.overlays = [
       pinnedPackageVersionsOverlay

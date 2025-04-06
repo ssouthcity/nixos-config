@@ -1,4 +1,10 @@
-{ inputs, outputs, pkgs, lib, ... }:
+{
+  inputs,
+  outputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -18,10 +24,12 @@
 
     home.stateVersion = "23.11";
 
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "discord"
-      "spotify"
-    ];
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "discord"
+        "spotify"
+      ];
 
     home.packages = [
       pkgs.discord

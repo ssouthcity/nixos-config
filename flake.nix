@@ -48,25 +48,25 @@
         nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit inputs outputs; };
-          modules = [./hosts/neptr];
+          modules = [ ./nixosConfigurations/neptr ];
         };
-        
+
         nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit inputs outputs; };
-          modules = [./hosts/nb-wsl];
+          modules = [ ./nixosConfigurations/nb-wsl ];
         };
 
         homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [./users/southcity/personal.nix];
+          modules = [ ./homeConfigurations/southcity/personal.nix ];
         };
-        
+
         homeConfigurations."southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [./users/southcity/work.nix];
+          modules = [ ./homeConfigurations/southcity/work.nix ];
         };
       }
     );
