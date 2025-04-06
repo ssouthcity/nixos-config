@@ -31,48 +31,42 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        outputs = self.outputs;
       in
       {
         formatter.${system} = pkgs.nixfmt-rfc-style;
 
-        nixosModules.default = import ./nixosModules/default.nix { inherit inputs; };
-        nixosModules.peripherals = import ./nixosModules/peripherals.nix { inherit inputs; };
+        nixosModules.default = import ./nixosModules/default.nix { inherit inputs pkgs; };
+        nixosModules.peripherals = import ./nixosModules/peripherals.nix { inherit inputs pkgs; };
+
+        homeManagerModules.cli = import ./homeManagerModules/cli.nix { inherit inputs pkgs; };
+        homeManagerModules.apps = import ./homeManagerModules/apps.nix { inherit inputs pkgs; };
+        homeManagerModules.nixvim = import ./homeManagerModules/nixvim { inherit inputs pkgs; };
+        homeManagerModules.stylix = import ./homeManagerModules/stylix { inherit inputs pkgs; };
+        homeManagerModules.tmux = import ./homeManagerModules/tmux { inherit inputs pkgs; };
 
         nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
-          modules = [
-            self.nixosModules.default
-            self.nixosModules.peripherals
-            ./hosts/neptr
-          ];
+          specialArgs = { inherit inputs outputs; };
+          modules = [./hosts/neptr];
         };
         
         nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit inputs pkgs; };
-          modules = [
-            inputs.nixos-wsl.nixosModules.default
-            self.nixosModules.default
-            ./hosts/nb-wsl
-          ];
+          inherit system pkgs;
+          specialArgs = { inherit inputs outputs; };
+          modules = [./hosts/nb-wsl];
         };
 
         homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix
-            ./users/personal
-          ];
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [./users/southcity/personal.nix];
         };
         
         homeConfigurations."southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix
-            ./users/work
-          ];
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [./users/southcity/work.nix];
         };
       }
     );

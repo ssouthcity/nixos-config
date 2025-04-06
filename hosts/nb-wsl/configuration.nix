@@ -1,13 +1,18 @@
-{ pkgs, ... }:
+{ inputs, outputs, ... }:
 
 {
-  wsl.enable = true;
-  wsl.defaultUser = "southcity";
+  imports = [
+    inputs.nixos-wsl.nixosModules.default
 
-  networking.hostName = "nb-wsl";
+    outputs.nixosModules.default
+  ];
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  config = {
+    wsl.enable = true;
+    wsl.defaultUser = "southcity";
 
-  system.stateVersion = "23.11";
+    networking.hostName = "nb-wsl";
+
+    system.stateVersion = "23.11";
+  };
 }

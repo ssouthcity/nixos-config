@@ -1,9 +1,15 @@
-{ pkgs, lib, ... }:
+{ inputs, outputs, pkgs, lib, ... }:
 
 {
   imports = [
-    ../../bundles/home-manager/cli
-    ../../bundles/home-manager/entertainment
+    inputs.nixvim.homeManagerModules.default
+    inputs.stylix.homeManagerModules.stylix
+
+    outputs.homeManagerModules.apps
+    outputs.homeManagerModules.cli
+    outputs.homeManagerModules.nixvim
+    outputs.homeManagerModules.stylix
+    outputs.homeManagerModules.tmux
   ];
 
   config = {
@@ -13,22 +19,14 @@
     home.stateVersion = "23.11";
 
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "discord-canary"
+      "discord"
       "spotify"
-      "terraform"
     ];
 
-    nixpkgs.overlays = [
-      (final: prev: {
-        terraform = pkgs.mkTerraform {
-          version = "1.10.5";
-          hash = "sha256-6Y9r3VxL3DRvUaU6hLE+SdqjfIF+PAlXEYBPBc571QE=";
-          vendorHash = "sha256-xyFguSjqUweZyoO97nkjLfJWS+eifNV7hpJUjh/6Z54=";
-        };
-      })
+    home.packages = [
+      pkgs.discord
+      pkgs.spotify
     ];
-
-    home.packages = [pkgs.terraform];
 
     # Not handled by stylix
     gtk.iconTheme = {
@@ -36,8 +34,7 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
-    modules.git = {
-      enable = true;
+    programs.git = {
       userName = "Stian Sørby";
       userEmail = "51554341+ssouthcity@users.noreply.github.com";
     };
