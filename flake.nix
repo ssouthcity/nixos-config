@@ -30,10 +30,7 @@
     flake-utils.lib.eachDefaultSystemPassThrough (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
+        pkgs = nixpkgs.legacyPackages.${system};
       in
       {
         formatter.${system} = pkgs.nixfmt-rfc-style;
@@ -53,7 +50,11 @@
         nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
           system = system;
           specialArgs = { inherit inputs pkgs; };
-          modules = [ ./hosts/nb-wsl/configuration.nix ];
+          modules = [
+            inputs.nixos-wsl.nixosModules.default
+            self.nixosModules.default
+            ./hosts/nb-wsl
+          ];
         };
 
         homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {

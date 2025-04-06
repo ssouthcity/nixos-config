@@ -1,11 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    ../../bundles/nixos/common
-    inputs.nixos-wsl.nixosModules.default
-  ];
-
   wsl.enable = true;
   wsl.defaultUser = "southcity";
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -11,6 +11,24 @@
     home.homeDirectory = "/home/southcity";
 
     home.stateVersion = "23.11";
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "discord-canary"
+      "spotify"
+      "terraform"
+    ];
+
+    nixpkgs.overlays = [
+      (final: prev: {
+        terraform = pkgs.mkTerraform {
+          version = "1.10.5";
+          hash = "sha256-6Y9r3VxL3DRvUaU6hLE+SdqjfIF+PAlXEYBPBc571QE=";
+          vendorHash = "sha256-xyFguSjqUweZyoO97nkjLfJWS+eifNV7hpJUjh/6Z54=";
+        };
+      })
+    ];
+
+    home.packages = [pkgs.terraform];
 
     # Not handled by stylix
     gtk.iconTheme = {
