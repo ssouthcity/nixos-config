@@ -2,7 +2,6 @@
   pkgs,
   lib,
   inputs,
-  outputs,
   ...
 }:
 let
@@ -19,10 +18,8 @@ in
     inputs.nixvim.homeManagerModules.default
     inputs.stylix.homeManagerModules.stylix
 
-    outputs.homeManagerModules.cli
-    outputs.homeManagerModules.nixvim
-    outputs.homeManagerModules.stylix
-    outputs.homeManagerModules.tmux
+    ./features/appearance
+    ./features/cli
   ];
 
   config = {
@@ -42,8 +39,8 @@ in
     ];
 
     programs.git = {
-      userName = "Stian Sørby";
-      userEmail = "stian.sorby@norges-bank.no";
+      userName = lib.mkForce "Stian Sørby";
+      userEmail = lib.mkForce "stian.sorby@norges-bank.no";
       credential = {
         helper = "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe";
         useHttpPath = true;

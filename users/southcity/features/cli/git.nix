@@ -1,25 +1,8 @@
-{ ... }:
 {
-  programs.bash = {
-    enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.eza = {
-    enable = true;
-    icons = "always";
-  };
-
-  programs.fzf = {
-    enable = true;
-  };
-
   programs.git = {
     enable = true;
+    userName = "Stian Sørby";
+    userEmail = "51554341+ssouthcity@users.noreply.github.com";
     aliases = {
       amend = "commit --amend --no-edit";
       force = "push --force-if-includes --force-with-lease";
@@ -34,17 +17,5 @@
         autoSetupRemote = true;
       };
     };
-  };
-
-  programs.jq = {
-    enable = true;
-  };
-
-  programs.starship = {
-    enable = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
   };
 }

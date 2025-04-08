@@ -1,10 +1,10 @@
-{ inputs, outputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
     inputs.nixos-wsl.nixosModules.default
 
-    outputs.nixosModules.default
+    ../common
   ];
 
   config = {

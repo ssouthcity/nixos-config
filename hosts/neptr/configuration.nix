@@ -1,9 +1,8 @@
-{ pkgs, outputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    outputs.nixosModules.default
-    outputs.nixosModules.peripherals
+    ../common
   ];
 
   config = {
@@ -74,6 +73,12 @@
       vim
       home-manager
     ];
+
+    # Enable support for Logitech peripherals
+    hardware.logitech = {
+      wireless.enable = true;
+      wireless.enableGraphical = true;
+    };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.

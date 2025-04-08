@@ -37,37 +37,28 @@
       {
         formatter.${system} = pkgs.nixfmt-rfc-style;
 
-        nixosModules.default = import ./nixosModules/default.nix { inherit inputs pkgs; };
-        nixosModules.peripherals = import ./nixosModules/peripherals.nix { inherit inputs pkgs; };
-
-        homeManagerModules.cli = import ./homeManagerModules/cli.nix { inherit inputs pkgs; };
-        homeManagerModules.apps = import ./homeManagerModules/apps.nix { inherit inputs pkgs; };
-        homeManagerModules.nixvim = import ./homeManagerModules/nixvim { inherit inputs pkgs; };
-        homeManagerModules.stylix = import ./homeManagerModules/stylix { inherit inputs pkgs; };
-        homeManagerModules.tmux = import ./homeManagerModules/tmux { inherit inputs pkgs; };
-
         nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixosConfigurations/neptr ];
+          modules = [ ./hosts/neptr ];
         };
 
         nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixosConfigurations/nb-wsl ];
+          modules = [ ./hosts/nb-wsl ];
         };
 
         homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./homeConfigurations/southcity/personal.nix ];
+          modules = [ ./users/southcity/personal.nix ];
         };
 
         homeConfigurations."southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./homeConfigurations/southcity/work.nix ];
+          modules = [ ./users/southcity/work.nix ];
         };
       }
     );
