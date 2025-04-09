@@ -15,7 +15,7 @@
       callback = {
         __raw = ''
           function(ev)
-            vim.lsp.buf.format({ 
+            vim.lsp.buf.format({
               bufnr = ev.bufnr,
               filter = function(client)
                 return client.server_capabilities.documentFormattingProvider

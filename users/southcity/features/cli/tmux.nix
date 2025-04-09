@@ -1,16 +1,22 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 with config.lib.stylix.colors.withHashtag;
 let
-  fullColorPill = bgColor: fgColor: content: 
-    "#[fg=${bgColor},bg=default]" +
-    "#[fg=${fgColor},bg=${bgColor}]${content}" +
-    "#[fg=${bgColor},bg=default]";
+  fullColorPill =
+    bgColor: fgColor: content:
+    "#[fg=${bgColor},bg=default]"
+    + "#[fg=${fgColor},bg=${bgColor}]${content}"
+    + "#[fg=${bgColor},bg=default]";
 
-  halfColorPill = leftBgColor: leftFgColor: leftContent: rightBgColor: rightFgColor: rightContent:
-    "#[fg=${leftBgColor},bg=default]" +
-    "#[fg=${leftFgColor},bg=${leftBgColor}]${leftContent}" +
-    "#[fg=${rightFgColor},bg=${rightBgColor}]${rightContent}" +
-    "#[fg=${rightBgColor},bg=default]";
+  halfColorPill =
+    leftBgColor: leftFgColor: leftContent: rightBgColor: rightFgColor: rightContent:
+    "#[fg=${leftBgColor},bg=default]"
+    + "#[fg=${leftFgColor},bg=${leftBgColor}]${leftContent}"
+    + "#[fg=${rightFgColor},bg=${rightBgColor}]${rightContent}"
+    + "#[fg=${rightBgColor},bg=default]";
 in
 {
   stylix.targets.tmux.enable = false;
@@ -56,17 +62,17 @@ in
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
-        set -g @continuum-restore 'on'
-        set -g @continuum-boot 'on'
-        set -g @continuum-save-interval '10'
+          set -g @continuum-restore 'on'
+          set -g @continuum-boot 'on'
+          set -g @continuum-save-interval '10'
         '';
       }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
-        set -g @resurrect-strategy-vim 'session'
-        set -g @resurrect-strategy-nvim 'session'
-        set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
         '';
       }
       tmuxPlugins.vim-tmux-navigator

@@ -18,6 +18,9 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -25,6 +28,7 @@
       self,
       nixpkgs,
       home-manager,
+      treefmt-nix,
       flake-utils,
       ...
     }@inputs:
@@ -35,7 +39,10 @@
         outputs = self.outputs;
       in
       {
-        formatter.${system} = pkgs.nixfmt-rfc-style;
+        formatter.${system} = treefmt-nix.lib.mkWrapper pkgs {
+          projectRootFile = "flake.nix";
+          programs.nixfmt.enable = true;
+        };
 
         nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
           inherit system pkgs;

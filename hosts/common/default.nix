@@ -5,4 +5,6 @@
     ./time.nix
     ./virtualisation.nix
   ];
+
+  programs.dconf.enable = true;
 }

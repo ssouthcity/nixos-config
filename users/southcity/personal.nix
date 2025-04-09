@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   imports = [
     inputs.nixvim.homeManagerModules.default
