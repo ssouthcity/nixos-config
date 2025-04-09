@@ -8,77 +8,65 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-utils.url = "github:numtide/flake-utils";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      outputs = self.outputs;
-    in
+  outputs =
     {
-      nixosConfigurations = {
-        amo = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs;};
-          modules = [ ./hosts/amo/configuration.nix ];
+      self,
+      nixpkgs,
+      home-manager,
+      treefmt-nix,
+      flake-utils,
+      ...
+    }@inputs:
+    flake-utils.lib.eachDefaultSystemPassThrough (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        outputs = self.outputs;
+      in
+      {
+        formatter.${system} = treefmt-nix.lib.mkWrapper pkgs {
+          projectRootFile = "flake.nix";
+          programs.nixfmt.enable = true;
         };
-        neptr = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          modules = [
-            ./hosts/neptr/configuration.nix
-            ./hosts/neptr/hardware-configuration.nix
-          ];
-        };
-        nb-wsl = nixpkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = {inherit inputs outputs pkgs;};
-          modules = [ ./hosts/nb-wsl/configuration.nix ];
-        };
-      };
 
-      homeConfigurations = {
-        "southcity@neptr" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ 
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
-            ./users/personal
-          ];
+        nixosConfigurations.neptr = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/neptr ];
         };
-        "southcity@amo" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ 
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
-            ./users/dev
-          ];
+
+        nixosConfigurations.nb-wsl = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/nb-wsl ];
         };
-        "southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
+
+        homeConfigurations."southcity@neptr" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ 
-            inputs.nixvim.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix 
-            ./users/work
-          ];
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./users/southcity/personal.nix ];
         };
-      };
-    };
+
+        homeConfigurations."southcity@nb-wsl" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./users/southcity/work.nix ];
+        };
+      }
+    );
 }
